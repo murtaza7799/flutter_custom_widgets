@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 
-class answers extends StatelessWidget {
+class Answers extends StatelessWidget {
+  final Function setHandler;
+  final String answerText;
+  Answers(this.setHandler, this.answerText);
   @override
   Widget build(BuildContext context) {
     return Container(
       // ignore: deprecated_member_use
       child: RaisedButton(
-        onPressed: () {},
+        onPressed: () {
+          setHandler();
+        },
         color: Colors.blue,
-        child: Text("Answer"),
+        child: Text(answerText),
       ),
     );
   }

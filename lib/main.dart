@@ -15,8 +15,21 @@ class MyApp extends StatefulWidget {
 
 class MyAppState extends State<MyApp> {
   // This widget is the root of your application.
-  var index = 0;
-  var text = ["this is my text1", "this is my text2"];
+  var index = 1;
+  var questions = [
+    {
+      'questionText': 'What is your favourite city ?',
+      'answers': ['lahore', 'multan', 'lodhran', 'dnp'],
+    },
+    {
+      'questionText': 'What is your favourite animal ?',
+      'answers': ['dog', 'cat', 'snake', 'lion'],
+    },
+    {
+      'questionText': 'What is your favourite instructor ?',
+      'answers': ['max', 'max1', 'max3', 'max4'],
+    }
+  ];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,17 +39,13 @@ class MyAppState extends State<MyApp> {
           ),
           body: Column(
             children: [
-              question(text[index]),
-              RaisedButton(
-                  onPressed: () {
-                    simpleQuestions();
-                  },
-                  child: const Text("Button")),
-              RaisedButton(onPressed: () {}, child: const Text("Button")),
-              RaisedButton(onPressed: () {}, child: const Text("Button")),
-              RaisedButton(onPressed: () {}, child: const Text("Button")),
-              RaisedButton(onPressed: () {}, child: const Text("Button")),
-              answers(),
+              Question(
+                questions[index]['questionText'],
+              ),
+              //Answers(simpleQuestions),
+              ...(questions[index]['answers'] as List<String>).map((answer) {
+                return Answers(simpleQuestions, answer);
+              }).toList()
             ],
           )),
     );
@@ -44,8 +53,10 @@ class MyAppState extends State<MyApp> {
 
   void simpleQuestions() {
     setState(() {
-      index = index + 1;
+      if (index < questions.length) {
+        index = index + 1;
+        print(index);
+      }
     });
-    print(index);
   }
 }

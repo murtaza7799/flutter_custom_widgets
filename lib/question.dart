@@ -2,15 +2,15 @@
 
 import 'package:flutter/material.dart';
 
-class question extends StatelessWidget {
-  final String questionText;
-  question(this.questionText);
+class Question extends StatelessWidget {
+  final Object? questionText;
+  Question(this.questionText);
 
   @override
   Widget build(BuildContext context) => Container(
       width: double.infinity,
       child: Text(
-        questionText,
+        questionText.toString(),
         style: TextStyle(fontSize: 40),
         textAlign: TextAlign.center,
       ));
